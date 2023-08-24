@@ -2,7 +2,7 @@
 using namespace std;
 #include "morefunc.h"
 
-void stackInput(stack &var)
+stack stackInput(stack var)
 {
 	int value;
 	cin >> value;
@@ -12,13 +12,13 @@ void stackInput(stack &var)
 		var.push(value);
 		cin >> value;
 	}
-
+	return var;
 }
 
 int main()
 {
 	stack var;
-	stackInput(var);
+	var = stackInput(var);
 	cout << "Size: " << var.sizeOfStack() << endl;
 	cout << "Popped Element: " << var.pop() << endl;
 	cout << "Size: " << var.sizeOfStack() << endl;
