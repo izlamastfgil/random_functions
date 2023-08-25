@@ -15,6 +15,16 @@ stack stackInput(stack var)
 	return var;
 }
 
+void empty(stack &var, int varSize)
+{
+	if (varSize == 0)
+	{
+		return;
+	}
+	var.pop();
+	empty(var, varSize - 1);
+}
+
 int main()
 {
 	stack var;
@@ -22,6 +32,9 @@ int main()
 	cout << "Size: " << var.sizeOfStack() << endl;
 	cout << "Popped Element: " << var.pop() << endl;
 	cout << "Size: " << var.sizeOfStack() << endl;
+	cout << "Is Stack Empty? : " << ((var.isEmpty()) ? "YES" : "NO") << endl;
+	cout << "Emptying Entire file" <<  endl;
+	empty(var, var.sizeOfStack());
 	cout << "Is Stack Empty? : " << ((var.isEmpty()) ? "YES" : "NO") << endl;
 	return 0;
 }
