@@ -1,5 +1,5 @@
-#ifndef MOREFUNC_H
-#define MOREFUNC_H
+#ifndef STACK_H
+#define STACK_H
 
 class stack
 {
@@ -48,4 +48,4 @@ public:
 	}
 };
 
-#endif // !"MOREFUNC_H"
+#endif // !"STACK_H"
