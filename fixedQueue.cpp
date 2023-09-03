@@ -1,6 +1,3 @@
-#include <iostream>
-using namespace std;
-
 class queue
 {
 private:
@@ -10,6 +7,7 @@ private:
 	int head;
 	int tail;
 public:
+
 	queue(int capacity) 
 	{
 		cap = capacity;
@@ -40,7 +38,7 @@ public:
 			return;
 		}
 
-		tail++;
+		tail = (tail + 1) % cap; // circular property of queue.
 		arr[tail] = value;
 		size++;
 	}
@@ -62,13 +60,10 @@ public:
 			return -1;
 		}
 
-		if (head == cap)
-		{
-			return -1;
-		}
+		
 
 		int ans = arr[head];
-		head++;
+		head = (head + 1) % cap;
 		size--;
 		return ans;
 	}
@@ -79,16 +74,3 @@ public:
 	}
 };
 
-int main()
-{
-	queue var(3);
-	var.enqueue(10);
-	var.enqueue(20);
-	var.enqueue(30);
-	var.enqueue(40);
-	cout << var.dequeue() << endl;
-	cout << var.front() << endl;
-	cout << var.getSize() << endl;
-	cout << boolalpha << var.isEmpty() << endl;
-	cout << boolalpha << var.isFull() << endl;
-}
