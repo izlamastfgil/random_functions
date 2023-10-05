@@ -176,6 +176,37 @@ public:
 
 		return ans;
 	}
+
+	binaryTreeNode* PreOrderAndInOrderToTree(int* preOrder, int* inOrder, int len) // 5 6 10, 6 5 10 
+	{
+		if (len == 0)
+			return nullptr;
+
+		binaryTreeNode* newNode = new binaryTreeNode(preOrder[0]);
+		int rootInInOrder = linearSearch(inOrder, len, preOrder[0]);
+
+		int lengthOfLeft = rootInInOrder;
+		int lengthOfRight = len - rootInInOrder - 1;
+
+	
+
+		newNode->left = PreOrderAndInOrderToTree(preOrder + 1, inOrder, rootInInOrder);
+		newNode->right = PreOrderAndInOrderToTree(preOrder + rootInInOrder + 1, inOrder + 1 + rootInInOrder, lengthOfRight);
+
+		return newNode;
+	}
+
+	private:
+		int linearSearch(int arr[], int size, int x)
+		{
+			for (size_t i = 0; i < size; i++)
+			{
+				if (arr[i] == x)
+					return i;
+			}
+
+			return -1;
+		}
 };
 
 class binaryTree
@@ -235,6 +266,12 @@ public:
 	vector<int> preOrderVector()
 	{
 		return root->preOrderVectorReturnVariant();
+	}
+
+	void PreOrderAndInOrderToTree(int* preOrder, int* inOrder, int inOrderLength)
+	{
+		root = root->PreOrderAndInOrderToTree(preOrder , inOrder, inOrderLength);
+		root->printLevelWise();
 	}
 };
 
